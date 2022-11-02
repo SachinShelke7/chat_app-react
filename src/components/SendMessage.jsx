@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { auth, db } from "../firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const style = {
   form: `h-14 w-full max-w-[728px] flex text-xl absolute bottom-0`,
@@ -6,14 +8,39 @@ const style = {
   button: `w-[20%] bg-green-500`,
 };
 
-const SendMessage = () => {
+const SendMessage = ({ scroll }) => {
+  const [input, setInput] = useState("");
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    if (input.length >= 1) {
+      const { uid, displayName } = auth.currentUser;
+      await addDoc(collection(db, "messages"), {
+        text: input,
+        name: displayName,
+        uid,
+        timestamp: serverTimestamp(),
+      });
+    } else {
+      alert("empty msg");
+    }
+    setInput("");
+    scroll.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className={style.form}>
-      <input type="text" className={style.input} placeholder="Message" />
+    <form className={style.form} onSubmit={handleSendMessage}>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        type="text"
+        className={style.input}
+        placeholder="Message"
+      />
       <button type="submit" className={style.button}>
         Send
       </button>
-    </div>
+    </form>
   );
 };
 

@@ -5,7 +5,7 @@ import { query, collection, orderBy, onSnapshot } from "firebase/firestore";
 import SendMessage from "./SendMessage";
 
 const style = {
-  main: `flex flex-col p-[10px] relative`,
+  main: `flex flex-col p-[10px] relative overflow-y-auto`,
 };
 
 const Chat = () => {
@@ -28,11 +28,11 @@ const Chat = () => {
     <>
       <main className={style.main}>
         {messages?.map((message) => {
-          return <Message key={message.id} message={message.text} />;
+          return <Message key={message.id} message={message} />;
         })}
       </main>
       {/* send msg component */}
-      <SendMessage />
+      <SendMessage scroll={scroll} />
       <span ref={scroll}></span>
     </>
   );
