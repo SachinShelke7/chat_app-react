@@ -6,7 +6,7 @@ import Chat from "./components/Chat";
 const style = {
   parentContainer: `bg-zinc-800`,
   appContainer: `max-w-md mx-auto text-center shadow-2xl shadow-zinc-300`,
-  sectionContainer: `flex flex-col h-screen bg-gray-100 shadow-xl border relative`,
+  sectionContainer: `flex flex-col h-[90vh] md:h-screen bg-gray-100 shadow-xl border relative`,
 };
 function App() {
   const [user] = useAuthState(auth);
