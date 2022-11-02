@@ -18,7 +18,7 @@ const Navbar = () => {
         <img src={Icon} alt="icon" className="w-7 h-7" />
         <h1 className={style.heading}>Lets Chat</h1>
       </div>
-      {user ? <LogOut /> : <SignIn />}
+      {user ? <LogOut user={user} /> : <SignIn />}
     </div>
   );
 };
