@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 
 const style = {
-  button: `bg-gray-200 px-4 py-2 hover:bg-gray-100`,
+  button: `bg-zinc-800 text-white hover:bg-red-800 px-4 py-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition-all duration-[500ms]`,
 };
 
 const LogOut = () => {
